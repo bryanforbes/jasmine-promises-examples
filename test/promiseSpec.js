@@ -12,6 +12,12 @@ function promiseThatResolves() {
 function promiseThatRejects() {
   return promise.promise(function(_, reject) { reject('A rejected promise'); });
 }
+function functionThatCallsMockedDependency(externalDependency) {
+  return promise.promise(function(resolve) {
+    externalDependency.method();
+    resolve();
+  });
+}
 
 describe('promises and jasmine', function() {
   it('the simplest passing promise test', function(done) {
@@ -62,5 +68,21 @@ describe('promises and jasmine', function() {
     // Issues:
     // - if the promise resolves unexpectedly then the test will run into the timeout
     //   therefore I added the success spy+fake, sucks a bit imho
+  });
+
+  it('testing for a mock-call', function(done) {
+    var myMock = {method: jasmine.createSpy('method')};
+    functionThatCallsMockedDependency(myMock)
+      .then(success)
+      .done();
+    
+    function success() {
+      expect(myMock.method).toHaveBeenCalled();
+      done();
+    }
+    // Note
+    // - I used to forget the `.done()` at the end of the promise, which swallowed
+    //   the "got function but expected spy" message from jasmine and ran into a timeout
+    //   since i have `.done()` there that issue is gone :)
   });
 });
