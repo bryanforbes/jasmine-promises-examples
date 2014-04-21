@@ -37,7 +37,7 @@ describe('promises and jasmine', function() {
     });
     // Pro
     // - removes the little meaningful `expect(true).toBe(true);` and replaces it by something
-    //   that shows a meaning when failing.
+    //   that shows a meaningful message when failing (kinda: `success should have been called ...`).
     //
     // Contra:
     // - the spy+callFake construct is not easy to understand on first sight
