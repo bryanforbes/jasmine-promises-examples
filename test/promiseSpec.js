@@ -42,4 +42,25 @@ describe('promises and jasmine', function() {
     // Contra:
     // - the spy+callFake construct is not easy to understand on first sight
   });
+
+  it('a rejected promise example', function(done) {
+    var success = jasmine.createSpy('success');
+    var reject = jasmine.createSpy('reject');
+    promiseThatRejects()
+      .then(success)
+      .catch(reject)
+      .done();
+
+    reject.andCallFake(function() {
+      expect(reject).toHaveBeenCalled(); // we expect this, to pass test
+      done();
+    });
+    success.andCallFake(function() {
+      expect(success).not.toHaveBeenCalled(); // test fails when this is called
+      done();
+    });
+    // Issues:
+    // - if the promise resolves unexpectedly then the test will run into the timeout
+    //   therefore I added the success spy+fake, sucks a bit imho
+  });
 });
