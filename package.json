@@ -23,5 +23,8 @@
   "homepage": "https://github.com/wolframkriesing/jasmine-promises-examples",
   "devDependencies": {
     "jasmine-node": "^1.14.3"
+  },
+  "dependencies": {
+    "when": "^3.1.0"
   }
 }
