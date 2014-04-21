@@ -1,0 +1,27 @@
+{
+  "name": "jasmine-promises-examples",
+  "version": "0.0.0",
+  "description": "Examples for jasmine and promises, in the hope to end up with something good.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wolframkriesing/jasmine-promises-examples.git"
+  },
+  "keywords": [
+    "jasmine",
+    "promises",
+    "tdd"
+  ],
+  "author": "Wolfram Kriesing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wolframkriesing/jasmine-promises-examples/issues"
+  },
+  "homepage": "https://github.com/wolframkriesing/jasmine-promises-examples",
+  "devDependencies": {
+    "jasmine-node": "^1.14.3"
+  }
+}
